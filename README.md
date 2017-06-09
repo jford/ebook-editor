@@ -1,2 +1,2 @@
 # ebook-editor
-Interacftive ebook editor
+Interactive ebook editor
