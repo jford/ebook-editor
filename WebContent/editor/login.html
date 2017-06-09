@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   
+   <html>
+	<head>
+		<title>Interactive Books Log In</title>
+		<script type="text/javascript" src="../scripts/base_page_header.js"></script>
+		<style>
+			div.login_body_pane
+			{
+				position: absolute;
+				margin-left: 20px;
+				margin-top: 5%;
+				width: 330px;
+			}
+			div.login_input_pane
+			{
+				position: absolute;
+				font-size: .7em;
+				margin-left: 10px;
+				padding-left: 20px;
+				padding-bottom: 10px;
+				margin-bottom: 50px;
+				width: 330px;
+				background-color: #ffffaa;
+			}
+
+			div.signup_offer_pane
+			{
+				position: absolute;
+				top: 210px;
+				width: 330px;
+				
+			}
+
+			
+			#loginSubmit, #cancel, #changePasswordSubmit
+			{
+				height: 1.8em;
+				width: 7em;
+				font-size: .6em;
+				padding: .3em;
+				padding-top: .1em;
+				padding-bottom: 10px;
+				margin-right: 17px;
+				float: right;
+			}
+			
+			div.signup_body_pane, div.forgot_password_body_pane, div.change_password_body_pane
+			{
+				display: none;
+			}
+			
+			p.body_text
+			{
+				font-size: .7em;
+				margin-left: 20px;
+			}
+			
+			p.section_head
+			{
+			   font-size: 1.2em;
+			   color: #0000CC;
+			   margin-top: 5%;
+			}
+			
+			p.section_subhead
+			{
+			   font-size: 1em;
+			   color: #0000CC;
+			   font-style: italic;
+			   margin-bottom: 0px;
+			   padding-bottom: 0px;
+			}
+			
+			.inline_text_note
+			{
+			   font-size: .7em;
+			   font-family: Arial, Helvetica, sans-serif;
+			   margin-top: 10px;
+			   margin-right: 40px;
+			   padding-bottom: 10px;
+			}
+
+		</style>
+		<script type="text/javascript">
+		
+		</script>
+
+	</head>
+<body onload="document.getElementById('userName').focus()" />
+<div class="login_body_pane">
+	<p class="section_head">
+	Please sign in:
+	</p>
+	<div class="login_input_pane">
+	   <form method="post" action="/iBook/j_security_check" >
+	      <p>
+	      <span>User Id: </span>
+		  <br/>
+		  <input type="text" name="j_username" id="userName" size="35" />
+		  </p>
+		  <p>
+		  <span>Password: </span>
+		  <br/>
+		  <input type="password" name="j_password" size="35" />
+		  </p>
+		  <p>
+		  <input id="loginSubmit" type="submit" value="Log In" />
+		  <br/>
+		  To change your password, click <a href="/iBook/index.html?show=change_password_body_pane">here</a>.
+		  </p>
+	   </form>
+   </div>
+   <div class="signup_offer_pane">
+   <p class="section_subhead">
+   No user account?
+   </p>
+   <p CLASS="inline_text_note">
+   No problem. Click <a href="/iBook/index.html?show=signup_body_pane">here</a>.
+   <input type="button" value="?" id="smallHelpButton" onclick="whyUserAccounts()" />
+   </p>
+   
+   </div>
+   </div>
+   
+   <div class="send_back">
+   		<div class="send_back_pair">
+   			<div class="send_back_label">Return to </div>
+   			<div class="send_back_target"><a href="http://www.electraink.com">ElectraInk Home</a></div>
+   		</div>
+   </div>
+   
+</body>
+</html>

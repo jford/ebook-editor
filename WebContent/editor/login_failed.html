@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>No User Account</title>
+		<style>
+		div.page_title
+		{
+		   margin-top: 70px;
+		   font-size: 1.5em;
+		   color: #0000CC;
+		}
+		body
+		{
+		   font-family: Georgia, Times, "Times New Roman", serif;
+		   margin-top: 30px;
+		   margin-left: 5%;
+		   margin-right: 20%;
+		}
+		</style>
+		<script type="text/javascript">
+		function delayedRedirect()
+		{
+			window.location = "/iBook/editor/index.jsp"
+		}
+		</script>
+	</head>
+	<body onload="setTimeout('delayedRedirect()', 3000)">
+		<div class="page_title">Login failed
+		</div>
+		<p>
+		You must sign in to use the <i style="color: #0000cc">Interactive Book Editor</i>.
+		</p>
+		<p>
+		You will be returned to the <i>eBook</i> log-in page momentarily... 
+		</p>
+	</body>
+</html>
