@@ -1,0 +1,33 @@
+<locationList>
+<location id="san_francisco_1">
+<name>
+<full>San Francisco</full>
+<aka>FriscoSan Fran</aka>
+</name>
+<description>shrouded in fog</description>
+<description>surrounded by water on three sides</description>
+<description>home to fewer than a million people</description>
+<type>city</type>
+<context>
+<geolcaleId>california_1</geolcaleId>
+</context>
+<books>
+<bookId>dracula_1</bookId>
+<bookId>mobydick_1</bookId>
+</books>
+</location>
+<geolocale id="california_1">
+<name>California</name>
+<description>southwestern US</description>
+<description>North American Pacific Coast</description>
+</geolocale>
+<geolocale id="west_coast_1">
+<name>West Coast</name>
+<description>eastern edge of the Pacific Ocean</description>
+<description>western edge of the North American continent</description>
+</geolocale>
+<geolocale id="earth_1">
+<name>Earth</name>
+<description>third rock from the sun</description>
+</geolocale>
+</locationList>

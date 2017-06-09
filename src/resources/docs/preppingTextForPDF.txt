@@ -1,0 +1,63 @@
+Prepping text for PDF output
+
+Text flows from a text-only string to a PDF object through the following classes, in the order listed:
+
+ProcessLines---divides a text string which may contain multiple paragraphs (each paragraph closed by a single line-end character) into a list of text strings each representing a single paragraph 
+
+PdfLines---converts a single text string representing a paragraph (and containinbg no line end characters) into a list of PdfLine objects, each representing the amount of text that will fit on a single line of the PDF being generated, taking into account page margins and font size
+
+PdfLine---a line of text, premeasured to fit into a single line in the final PDF, into segments of text which share common font specifications
+
+ProcessLine---for each PdfLine object, sends each PdfLineSegment to the ProcessLineSegment class
+
+ProcessLineSegment---sends text to the TextOut class, and resets font, paraStart, and offset parametgers of the TextOutSpecs object
+
+TextOut
+
+A PDF file consists of a set of drawing instructions which tell the PDF reader program what to do.
+
+A PDF created by the eBook editor app consists of text displayed in some variation of font name, font style, font size, and line leading, formatted for an 8 1/2 x 11 inch page, with margins.
+
+Text comes from three basic sources:
+
+- Title: The title page text is constructed on the fly in the TitlePage class.
+
+- Preface, Copyright, Legal Notice: The BoilerplateFactory generates the preface, copyright, and legal notices texts, each contained in a single string with paragraphs divided by two line-end characters ("\n\n"). This text is processed as follows:
+
+a) One line at at a time, this text is sent to the ProcessLines() constructor, which extracts individual text lines. 
+
+b) Each text line is sent to the PdfLines constructor, which measures out enuought text for a PDF line and sends it to the PdfLine constructor. 
+
+c) The PdfLine constructor breaks the line into same-font-specs line segments.
+
+d) By now there is a Vector of PdfLine objects, each of which is a vector of line segment string arrays. Each PdfLine object is sent to the processLineSegment constructor...
+
+e) ...which sends the text of the segment to the TextOut constructor, and then sets the font information in TextOutSpecs object for the next line segment.
+
+- Contents: The book's narrative content is handled differently. A vector of strings representing the entire text is retrieved from the Manuscript. Since there will be an unknown number of pages, and the amount of text that will be fit on each page depends on the contents of each string, the ProcessLines constructor is not called. Instead, the PdfLines constructor is called from a getPdfLines() method in the ContentPage object and a vector of all PdfLines for the entire book is created, and a ContentPage.getPages() method is called to create the PDF pages.
+
+The eBook app uses the open-source PdfBox libraries to create and populate a PDF file. The PDF document is created in the PdfObj class. Each page of the PDF is created separately, in each of the TitlePage, Preface, CopyrightPage, and LegalNocice classes, and severally, one at a time for as many pages as is needed to hold the manuscript, in the ContentPage class.
+
+Text is added to each page in a succession of calls to the TextOut class.
+
+The text for each page must be divided into a Vector of PdfLines. Each PdfLine object contains all of the text that will fit on the PDF page between the margins, using the font specifications appropriate for each word/character. In order to minimize the number of draw operations calle for in the final PDF file, each PdfLine is subdivided into a Vector of PdfLineSegments---a run of text using the same font specifications, that can be sent to the PdfBox library for a single draw operation.
+
+BoilerplateFactory text (for the preface, copyright, and legal notice pages) consists of multiple lines of text separated by line-end characters. The entire string retrieved from the factory needs to be processed in the ProcessLines class. This class breaks the text into individual textblocks (a single line of text, no line endings), which are each sent one by one to the ProcessLine class.
+
+The PdfLine class constructor breaks a string of text into its component segments. Each segment consists of an array containing all the text from the beginning of the segment until the next font change as indicated by html <i>, <b>, and <h...> tags (null if no font change), a string identifying the font to be used by the *following* segment, a string identifying heading level as indicated by html <h...> tag---will be null if not a heading---and a string indicating the start of a new paragraph (null if not a paragraph-starting segment). After instantiation of the PdfLine object, the getLineSegments() method will return a Vector of string arrays representing the segments that make up the PDF line.
+
+Note that the PdfLine class constructor requires as argument a string that has been premeasured to fit within the PDF margins.
+
+The PdfLines class constructor will take a string of text of any length and break it down into a Vector of PdfLine objects, which is then available for retrieval using the getPdfLines() method. 
+
+Note that the PdfLines constructor will not create a vector of lines if the incoming text contains any end of line characters ("\n"). The getPdfLines() method will return "null".
+
+The preface, copyright, and legal notice pages of the PDF all use text retrieved from the BoilerplateFactory in the form of a single string that contains multiple lines---a single string in which several paragraphs are separated by end of line characters. 
+
+The Preface, CopyrightPage, and LegalNoticePage objects retrieve these strings from the boilderplate factory and send them to the ProcessLines constructor, which breaks the text down into individual lines of text which are then sent individually to the ProcessLine constructor.
+
+The ContentsPage retrieves text from the manuscript, in the form of a Vector of textblocks. Each textblock represents a single paragraph of the narrative and does not contain any line end characters. The ContentsPage sends each textblock directly to the ProcessLine constructor. There is no need to use the ProcessLines object for these textblocks.
+
+The ProcessLine constructor (whether called by the ProcessLines constructor or directly from the ContentsPage) takes a PdfLine object as argument, retrieves the line segments one by one and sends each to the ProcessLineSegment constructor.
+
+The ProcessLineSegment constructor creates a TextOut object, which sends the text retrieved from TextOutSpecs.getText() to the PDF document, then examines each part of the lineSegment[] array and sets the TextOutSpecs object's members as indicated, thereby setting font and offset criteria for the next segment of the line.  
