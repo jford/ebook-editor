@@ -1,2 +1,2 @@
 # ebook-editor
-Interactive ebook [editor] (http://www.electraink.com/)
+Interactive ebook <a href="http://www.electraink.com/">editor</a>
