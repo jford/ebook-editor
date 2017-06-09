@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      
+   <html>
+	<head>
+		<title>Interactive Books</title>
+		<script type="text/javascript" src="scripts/base_page_header.js"></script>
+		<style>
+			div.intro_pane
+			{
+				background-color: #ffffcc;
+				font-size: .7em;
+				margin-top: 100px;
+				margin-left: 15%;
+				padding: 10px;
+				width: 500px; 
+			}
+			div.accountMgmtOptions
+			{
+				display: none;
+				position: absolute;
+				top: 300px;
+				left: 20%;
+				padding-left: 10px;				
+				background-color: #ffffdd;
+				font-size: .7em;
+			}
+			div.view_account_data_input_pane
+			{
+				position: absolute;
+				top: 300px;
+				margin-left: 5%;
+				padding-left: 10px;
+				padding-bottom: 10px;
+				padding-right: 20px;
+				width: 460px;
+				background-color: #ddffdd;
+			}
+			
+			div.signup_input_pane
+			{
+				position: absolute;
+				top: 300px;
+				margin-left: 5%;
+				padding-left: 10px;
+				padding-bottom: 10px;
+				padding-right: 20px;
+				width: 460px;
+				background-color: #ddffdd;
+			}
+			
+			div.forgot_password_input_pane
+			{
+				position: absolute;
+				top: 300px;
+				margin-left: 5%;
+				width: 320px;
+				padding-left: 10px;
+				padding-right: 20px;
+				padding-bottom: 10px;
+				background-color: #dddddd;
+			}
+			
+			div.change_password_input_pane
+			{
+				position: absolute;
+				top: 300px;
+				margin-left: 5%;
+				width: 450px;
+				padding-left: 10px;
+				padding-right: 20px;
+				padding-bottom: 10px;
+				background-color: #ddffff;
+			}
+			
+			div.change_email_input_pane
+			{
+				position: absolute;
+				top: 300px;
+				margin-left: 5%;
+				width: 450px;
+				padding-left: 10px;
+				padding-right: 20px;
+				padding-bottom: 10px;
+				background-color: #ddddff;
+			}
+			
+			p.body_text
+			{
+				font-size: .7em;
+				margin-left: 20px;
+			}
+			
+			p.section_head
+			{
+			   font-size: 1.2em;
+			   color: #0000CC;
+			   margin-top: 5%;
+			}
+			
+			p.section_subhead
+			{
+			   font-size: 1em;
+			   color: #0000CC;
+			   font-style: italic;
+			   margin-bottom: 0px;
+			   padding-bottom: 0px;
+			}
+			
+			#loginSubmit, 
+			#signupSubmit, 
+			#cancel, 
+			#forgotPasswordSubmit, 
+			#changePasswordSubmit, 
+			#changeEmailSubmit,
+			#viewAccountSubmit
+			{
+				height: 1.8em;
+				width: 7em;
+				font-size: .6em;
+				padding: .3em;
+				padding-top: .1em;
+				padding-bottom: 10px;
+				margin-right: 17px;
+				float: right;
+			}
+			
+			div.signup_body_pane, 
+			div.forgot_password_body_pane, 
+			div.change_password_body_pane, 
+			div.change_email_body_pane, 
+			div.view_account_data_body_pane
+			{
+				display: none;
+			}
+			
+		</style>
+		<script type="text/javascript">
+		
+		function showPanes()
+		{
+			if(location.search)
+			{
+				var show = location.search.substring(1).split("=");
+				
+//				alert("show = " + show.value);
+//				alert("show[0] = " + show[0] + "\nshow[1] = " + show[1]);
+				
+				if(show[0] == "show")
+					document.getElementById(show[1]).style.display = "inline";
+				else if(show[0] == "msg")
+					alert(decodeMsg(show[1]));
+			}
+		}
+		
+		function decodeMsg(msg)
+		{
+//			alert("decoding...");
+			
+			var idx = 0;
+			while((idx = msg.indexOf("%20")) != -1)
+				msg = msg.substring(0, idx) + " " + msg.substring(idx + 3);
+			return msg;
+		}
+		
+		function confirmEmailFormat(emailAddr)
+		{
+			var ret = true;
+			var idx = 0;
+			
+			if(idx = emailAddr.value.indexOf("@") == -1)
+				ret = false;
+			else if(emailAddr.value.indexOf(".", idx) == -1)
+				ret = false;
+			if(ret == false)
+				alert("An e-mail address is required.");
+			return ret;
+		}
+		
+		function confirmPasswordEntry(pword, cword)
+		{
+			var yesno = "";
+			var ret = true;
+
+			if(pword.value == "" || cword.value == "")
+			{
+				alert("Please enter password twice to confirm spelling.");
+				ret = false
+			}
+			else
+			{
+				if(pword.value.localeCompare(cword.value) != 0)
+				{
+					alert("Password entries do not match.");
+					ret = false;
+				}
+			}
+			return ret;
+		}
+		</script>
+	</head>
+	<body onload="showPanes();">
+	<div class="intro_pane">
+		<p class="section_head" style="font-size: 2em">
+			Welcome to ElectraInk's Interactive Book Editor
+		</p>
+		<p>
+		This is the place where the age-old arts of publishing and wordsmithery 
+		meet up with the digital age, the place where you can put yourself, or anybody 
+		else you choose, into the stories that helped shape the culture in which we live.
+		</p>
+		<p>
+		Click <a href="editor/">here</a> to log in to the editor, or <a href="index.html?show=accountMgmtOptions" >here</a> to create/manage your user account details.
+		</p>
+   </div>
+   <div class="accountMgmtOptions" id="accountMgmtOptions">
+    <p class="section_subhead">Create user account?</p>
+    <p>Click <a href="index.html?show=signup_body_pane" >here</a>.</p>
+   	<p class="section_subhead">Forgot your password?</p>
+   	<p>Click <a href="index.html?show=forgot_password_body_pane" >here</a>.</p>
+   	<p class="section_subhead">Need to change your password?</p>
+   	<p>Click <a href="index.html?show=change_password_body_pane" >here</a>.</p>
+   	<p class="section_subhead">Change your email address?</p>
+   	<p>Click <a href="index.html?show=change_email_body_pane" >here</a>.</p>
+   	<p class="section_subhead">View your account data?</p>
+   	<p>Click <a href="index.html?show=view_account_data_body_pane">here</a>.</p>
+   </div>
+   <div class="view_account_data_body_pane" id="view_account_data_body_pane">
+   		<div class="view_account_data_input_pane">
+  		<p class="section_subhead">
+   		View Account Data?
+   		</p>
+	   		<form name="viewAccountForm" action="ManageUserAccounts" method="post" >
+	   			<p class="signup_label" style="text-align=right">
+	   			User name:
+	   			<input type="text" name="userId" size="35" style="float:right"/>
+	   			</p>
+	   			Password:
+	   			<input type="password" name="password" size="35" style="float: right"/>
+	   			</p>
+	   			<input type="submit" id="viewAccountSubmit" name="viewAccountSubmit" value="Submit" onclick="if(confirmEmailFormat(emailAddr))ret = confirmPasswordEntry(newPassword, confirmPassword);else ret = false;return ret"/><br/>
+	   			<input type="button" id="cancel" value="Cancel" onclick="document.location='index.html'" />
+	   		</form>
+   		</div>
+   </div>
+   <div class="signup_body_pane" id="signup_body_pane">
+   		<div class="signup_input_pane">
+	   		<form name="signupForm" action="ManageUserAccounts" method="post" >
+	   			<p class="signup_label" style="text-align=right">
+	   			Enter a user name:
+	   			<input type="text" name="userId" size="35" style="float:right"/>
+	   			</p>
+	   			<p class="signup_label" style="text-align=right">
+	   			Enter your email address:
+	   			<input type="text" name="emailAddr" id="signupEmailAddr" size="35" style="float: right"/>
+	   			</p>
+	   			<p class="signup_label">
+	   			Create a password:
+	   			<input type="password" name="newPassword" id="signupNewPassword" size="35" style="float: right"/>
+	   			</p>
+	   			<p class="signup_label">
+	   			Confirm password:
+	   			<input type="password" name="confirmPassword" id="signupConfirmPassword" size="35" style="float: right"/>
+	   			</p>
+	   			<input type="submit" id="signupSubmit" name="signupSubmit" value="Submit" onclick="if(!validateSignupData())ret = false; else ret = newUserMsg();return ret;" /><br/>
+	   			<input type="button" id="cancel" value="Cancel" onclick="document.location='index.html'" />
+	   		</form>
+   		</div>
+   </div>
+   <div class="change_password_body_pane" id="change_password_body_pane">
+   		<div class="change_password_input_pane">
+   		<p class="section_subhead">
+   		Change Password?
+   		</p>
+	   		<form name="changePasswordForm" action="ManageUserAccounts" method="post">
+	   			<p class="signup_label" style="text-align=right">
+	   			Enter user name:
+	   			<input type="text" name="userId" size="35" style="float: right"/>
+	   			</p>
+	   			<p class="signup_label">
+	   			Enter current password: 
+	   			<input type="password" name="currentPassword" size="35" style="float: right"/><br/>
+	   			</p>
+	   			<hr/>
+	   			<p class="signup_label">
+	   			Create a password:
+	   			<input type="password" name="newPassword" size="35" style="float: right"/><br/>
+				</p>
+	   			<p class="signup_label">
+	   			Confirm password:
+	   			<input type="password" name="confirmPassword" size="35" style="float: right"/><br/>
+	   			</p>
+	   			<input type="submit" id="changePasswordSubmit" name="changePasswordSubmit" value="Submit" onclick="return confirmPasswordEntry(newPassword, confirmPassword)" /><br/>
+	   			<input type="button" id="cancel" value="Cancel" onclick="document.location='index.html'" />
+	   			
+	   		</form>
+   		</div>
+   </div>
+   <div class="forgot_password_body_pane" id="forgot_password_body_pane">
+   		<div class="forgot_password_input_pane">
+   		<p class="section_subhead">
+   		Forgot Your Password?
+   		</p>
+	   		<form name="forgotPasswordForm" action="ManageUserAccounts" method="post">
+	   			<p class="signup_label" >
+	   			User ID:
+	   			<input type="text" name="userId" id="userId" size="35" style="float: right" /><br/>
+	   			</p>
+	   			<p class="signup_label">
+	   			A new password will be emailed to you. 
+	   			</p>
+	   			<input type="submit" name="forgotPasswordSubmit" id="forgotPasswordSubmit" value="Okay" onclick="return validateForgotPasswordUserId()" /><br/>
+	   			<input type="button" id="cancel" value="Cancel" onclick="document.location='index.html'" />
+	   		</form>
+   		</div>
+   </div>
+   <div class="change_email_body_pane" id="change_email_body_pane">
+   		<div class="change_email_input_pane">
+   		<p class="section_subhead">
+   		Change Email Address?
+   		</p>
+	   		<form name="changeEmailForm" action="ManageUserAccounts" method="post">
+	   			<p class="signup_label" style="text-align=right">
+	   			Enter user name:
+	   			<input type="text" name="userId" size="35" style="float: right"/>
+	   			</p>
+	   			<p class="signup_label">
+	   			Password: 
+	   			<input type="password" name="currentPassword" size="35" style="float: right"/><br/>
+	   			</p>
+	   			<hr/>
+	   			<p class="signup_label">
+	   			Set as Email:
+	   			<input type="text" name="newEmail" size="35" style="float: right"/><br/>
+				</p>
+	   			<input type="submit" id="changeEmailSubmit" name="changeEmailSubmit" value="Submit" /><br/>
+	   			<input type="button" id="cancel" value="Cancel" onclick="document.location='index.html'" />
+	   			
+	   		</form>
+   		</div>
+   </div>
+   <div class="send_back">
+   		<div class="send_back_pair">
+   			<div class="send_back_label">About </div>
+   			<div class="send_back_target"><a href="." onclick="aboutBookEditor()">ElectraInk Interactive Book Editor</a></div>
+   		</div>
+   		<div class="send_back_pair">
+   			<div class="send_back_label">Return to </div>
+   			<div class="send_back_target"><a href="http://www.electraink.com">ElectraInk Home</a></div>
+   		</div>
+   </div>
+   
+		
+	</body>
+</html>
+

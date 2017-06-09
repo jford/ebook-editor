@@ -1,0 +1,113 @@
+/* iBook-generated epub style sheet */
+body 
+{ 
+	margin-left: 5%; 
+	margin-right: 5%; 
+	margin-top: 5%; 
+	margin-bottom: 5%; 
+	text-align: justify; 
+}
+pre 
+{ 
+	font-size: x-small; 
+}
+h1
+{ 
+	text-align: center; 
+	font-size: 1.1em;
+	font-weight: bold;
+}
+h2 
+{ 
+	text-align: center;
+	font-size: 1em;
+	font-weight: bold;
+}
+h3 
+{ 
+	text-align: center;
+	font-size: 1em;
+	text-decoration: italic;
+}
+h4 
+{ 
+	text-align: center; 
+}
+h5 
+{ 
+	text-align: center; 
+}
+h6 
+{
+	text-align: center; 
+}
+.CI 
+{
+    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+}
+.center   
+{
+	text-align: center;
+}
+.smcap    
+{
+	font-variant: small-caps;
+}
+.u        
+{
+	text-decoration: underline;
+}
+.bold     
+{
+	font-weight: bold;
+}
+div.titlepage
+{
+	text-align: center;
+}
+.booktitle
+{
+	font-size: 1.5em;
+	font-weight: bold;
+}
+.bookauthor
+{
+	font-size: 1.2em;
+	text-decoration: italic;
+}
+.booksubtitle
+{
+	text-align: left;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+.ibookslug
+{
+	font-size: .7em;
+	margin-top: 70%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	text-decoration: italic;
+}
+div.copyrightblock
+{
+	font-size: .7em;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+div.preface
+{
+	font-size: .7em;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+div.legalnotice
+{
+	font-size: .7em;
+	margin-left: 15%;
+	margin-right: 15%;
+}

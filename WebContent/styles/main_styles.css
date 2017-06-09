@@ -1,0 +1,327 @@
+body
+{
+   font-family: Georgia, Times, "Times New Roman", serif;
+   margin-top: 30px;
+   margin-left: 5%;
+   margin-right: 20%;
+}
+
+a:link    { color: #009900; 
+            text-decoration: none;
+          }
+a:visited { color: #aaaaaa; 
+            text-decoration: none;
+          }
+a:hover   { color: #aa0000; 
+            text-decoration: none;
+          }
+
+div.banner
+{
+   margin-top: 70px;
+   font-size: 1.5em;
+   color: #cc00CC;
+}
+
+div.page_title
+{
+   margin-top: 70px;
+   font-size: 1.5em;
+   color: #0000CC;
+}
+
+div.text
+{
+   font-size: 1em;
+   margin-top: 10px;
+   margin-right: 30%;
+}
+
+div.text_note
+{
+   font-size: .7em;
+   font-family: Arial, Helvetica, sans-serif;
+   margin-top: 10px;
+   margin-right: 40px;
+   border-top: 3px solid #999999;
+   border-bottom: 3px solid #999999;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+
+div.text_note_no_border
+{
+   font-size: .7em;
+   font-family: Arial, Helvetica, sans-serif;
+   margin-top: 10px;
+   margin-right: 40px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+
+div.send_back
+{
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: .7em;
+   position: absolute;
+   top:  20px;
+   left: 600px; 
+}
+
+div.send_back_pair
+{
+	display: table-row;
+}
+
+div.send_back_label
+{
+	display: table-cell;
+	padding: 0;
+	padding-right: 3px;
+	
+}
+
+div.send_back_target
+{
+	display: table-cell;
+	padding: 0;
+}
+
+p.sig
+{
+   font-size: .8em;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+p.slug
+{
+   font-size: .7em;
+   font-family: Arial, Helvetica, sans-serif;
+   color: grey;
+   font-style: italic;
+}
+
+p.section_head
+{
+   font-size: 1.2em;
+   color: #0000CC;
+}
+
+p.section_subhead
+{
+   font-size: 1em;
+   color: #0000CC;
+   font-style: italic;
+}
+
+p.sub_head
+{
+   font-size: 1em;
+   color: #0000BB;
+}
+
+li 
+{
+   font-style: normal;
+   font-weight: normal;
+   line-height: 115%;
+}
+
+h1
+{
+   font-family: Georgia, Times, "Times New Roman", serif;
+   font-size: 1em;
+   color: #0000CC;
+}
+
+.body_text
+{
+   font-size: 1em;
+}
+
+.top_level_list_item
+{
+   line-height: 200%;
+   font-style: italic;
+   font-weight: bold;
+}
+
+.date
+{
+   color: #0000ff;
+}
+
+.note_text
+{
+   font-size: .8em;
+}
+
+.rls_date
+{
+   font-size: .8em;
+   margin-left: 20px;
+}
+
+.code_text
+{
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.rls
+{
+   font-size: .8em;
+   margin-left: 20px;
+}
+
+.alert_text
+{
+   color: #ff0000;
+}
+
+.emphasis
+{
+   font-style: italic;
+}
+
+.heavy
+{
+   font-weight: bold;
+}
+
+.left
+{
+   text-align: left;
+   margin-top: 0px;
+   width: 380px;
+   border-left: 1px;
+   border-right: 1px;
+   float: left;
+}
+
+.middle
+{
+   text-align: left;
+   margin-top: 0px;
+   width: 433px;
+   float: left;
+}
+
+.right
+{
+   text-align: right;
+   margin-top: 0px;
+   width: 50px;
+   float: left;
+}
+
+.normal
+{
+   float: none;
+}
+
+.book_name
+{
+   font-style: italic;
+}
+
+.file_name
+{
+   font-style: italic;
+}
+
+.obj_name
+{
+   font-weight: bold;
+}
+
+.col_1
+{
+   position: absolute;
+   left: 450px;
+}
+
+.col_2
+{
+   position: absolute;
+   left: 850px;
+}
+
+.bullet_line
+{
+   margin-left: 20px;
+   color: #009900;
+   background-color: #ffffff;
+   line-height: 150%;
+}
+
+.red
+{
+   color: #ff0000;
+   background-color: #ffffff;
+}
+
+.green
+{
+   color: #009900;
+   background-color: #ffffff;
+}
+
+.yellow
+{
+   color: #ffff00;
+   background-color: #ffffff;
+}
+
+.brown
+{
+   color: #a52a2a;
+   background-color: #ffffff;
+}
+
+.orange
+{
+   color: #ff9900;
+   background-color: #ffffff;
+}
+
+.purple
+{   
+   color: #990099;
+   background-color: #ffffff;
+}
+
+.blue
+{
+   color: #0000CC;
+   background-color: #ffffff;
+}
+
+.aqua
+{
+   color: #7fffd4;
+   background-color: #ffffff;
+}
+
+
+ol
+{
+   list-style-type: decimal;
+   color: green;
+}
+
+text.ul
+{
+   list-style-type: disc;
+}
+
+ul ul
+{
+   list-style-type: circle;
+}
+
+ol ol
+{
+   list-style-image: url(hyphen.gif);
+   list-style-type: lower-alpha;
+}
+
